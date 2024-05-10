@@ -1,0 +1,17 @@
+CC = g++
+CFLAGS = -Wall -g
+
+SOURCES = $(wildcard src/*.cpp)
+OBJECTS = $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
+TARGET = HashTable
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+    $(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET)
+
+obj/%.o: src/%.cpp
+    $(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+    rm -f $(OBJECTS) $(TARGET)
